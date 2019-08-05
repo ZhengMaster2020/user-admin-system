@@ -1,33 +1,91 @@
 <template>
-  <div>
-    <el-table :data="tableData" :stripe="true" :highlight-current-row="true" index  ref="multipleTable">
-      <el-table-column type="selection" label="全选/全不选"></el-table-column>
-      <el-table-column label="序号" type="index"></el-table-column>
-      <el-table-column label="日期">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span style="margin-left:5px">{{ scope.row.date }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="name" label="姓名"></el-table-column>
-      <el-table-column prop="birthplace" label="籍贯"></el-table-column>
-      <el-table-column prop="number" label="号码"></el-table-column>
-      <el-table-column prop="education" label="学历"></el-table-column>
-      <el-table-column prop="position" label="职位"></el-table-column>
-      <el-table-column label="操作">
-        <el-button-group>
-          <el-button type="primary" size="small" :circle="true">详情</el-button>
-          <el-button type="danger" size="mini" :circle="true">删除</el-button>
-        </el-button-group>
-      </el-table-column>
-    </el-table>
-    <el-pagination 
-      background  
-      layout="total, prev, pager, next, jumper" 
-      :total="300" 
-      :current-page="1" 
-      :page-size="6" >
-    </el-pagination>
+  <div id="home">
+    <el-container>
+      <el-header>
+        <div class="header-logo">
+          <i class="el-icon-menu" @click="isCollapse"></i>
+        </div>
+        <div class="header-title">
+          <p>用户信息管理系统</p>
+        </div>
+        <div class="header-userinfo">
+          <div class="user-avatar">
+            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          </div>
+          <div class="user-message">
+            <el-dropdown split-button size="medium" @command="handleCommand" >
+              欢迎您，admin
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item icon="el-icon-message" command="info">个人信息</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-close"  command="exit" divided>退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+        </div>
+      </el-header>
+      <el-row>
+        <el-col :span="asieSpan">
+          <el-aside>
+            <el-menu
+              default-active="/"
+              class="el-menu-vertical-menu"
+              mode="vertical"
+              :collapse="collapse"
+              :router="true"
+            >
+              <el-menu-item index="/">
+                <i class="el-icon-s-home"></i>
+                <span slot="title">首页</span>
+              </el-menu-item>
+
+              <el-menu-item index="/all">
+                <i class="el-icon-user"></i>
+                <span slot="title">所有用户</span>
+              </el-menu-item>
+
+              <el-menu-item index="/add">
+                <i class="el-icon-circle-plus-outline"></i>
+                <span slot="title">添加用户</span>
+              </el-menu-item>
+
+              <el-menu-item index="/update">
+                <i class="el-icon-refresh"></i>
+                <span slot="title">更新用户</span>
+              </el-menu-item>
+
+              <el-menu-item index="/search">
+                <i class="el-icon-search"></i>
+                <span slot="title">查找用户</span>
+              </el-menu-item>
+
+              <el-submenu index="/admin">
+                <template slot="title">
+                  <i class="el-icon-user-solid"></i>
+                  <span slot="title">管理员</span>
+                </template>
+                <el-menu-item-group title="Admin">
+                  <span slot="title" class>设置</span>
+                  <el-menu-item index="/admin/msg">查看信息</el-menu-item>
+                  <el-menu-item index="/admin/set">修改密码</el-menu-item>
+                </el-menu-item-group>
+              </el-submenu>
+            </el-menu>
+          </el-aside>
+        </el-col>
+        <el-col :span="mainSpan" class="main">
+          <el-main>
+            <el-breadcrumb
+              separator-class="el-icon-arrow-right"
+              style="margin:15px 20px 10px 15px;"
+            >
+              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{ path: '/all' }">ALL用户</el-breadcrumb-item>
+            </el-breadcrumb>
+            <router-view></router-view>
+          </el-main>
+        </el-col>
+      </el-row>
+    </el-container>
   </div>
 </template>
 
@@ -36,105 +94,76 @@ export default {
   name: "Home",
   data() {
     return {
-      tableData: [
-        {
-          date: new Date().toLocaleDateString(),
-          name: "张三",
-          birthplace: "广东广州",
-          number: "18998555668",
-          education: "本科",
-          position: "前端工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "张四",
-          birthplace: "广东深圳",
-          number: "189985556789",
-          education: "专科",
-          position: "后端工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "李四",
-          birthplace: "广东茂名",
-          number: "13498555668",
-          education: "研究生",
-          position: "Java工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "王五",
-          birthplace: "广东珠海",
-          number: "18999555668",
-          education: "本博士科",
-          position: "H5工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "苟六",
-          birthplace: "广东东莞",
-          number: "13415645796",
-          education: "博士后",
-          position: "人工智能"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "张良",
-          birthplace: "四川成都",
-          number: "13415645886",
-          education: "讲师",
-          position: "AI人脸识别"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "李四",
-          birthplace: "广东茂名",
-          number: "13498555668",
-          education: "研究生",
-          position: "Java工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "黄菁菁",
-          birthplace: "广东清远",
-          number: "13498555668",
-          education: "本科",
-          position: "UI工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "华名建",
-          birthplace: "云南丽江",
-          number: "13498555668",
-          education: "研究生",
-          position: "Java工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "林莹静",
-          birthplace: "湖北武汉",
-          number: "78945621235",
-          education: "研究生",
-          position: "Java工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "程斌",
-          birthplace: "北京朝阳",
-          number: "13498555668",
-          education: "研究生",
-          position: "PHP工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "刘玲",
-          birthplace: "湖南长沙",
-          number: "13498555668",
-          education: "高中生",
-          position: "设计工程师"
-        },
-      ]
+      collapse: false,
+      asieSpan: 3,
+      mainSpan: 21
     };
+  },
+  components: {},
+  methods: {
+    isCollapse() {
+      this.collapse = !this.collapse;
+      if (this.collapse === true) {
+        this.asieSpan = 1;
+        this.mainSpan = 23;
+      } else {
+        this.asieSpan = 3;
+        this.mainSpan = 21;
+      }
+    },
+    handleCommand (command) {
+      if ( command === 'exit' ) {
+        this.$router.push('login')
+      }
+    }
   }
 };
 </script>
 
-<style scoped>
-.el-button {
-  padding: 10px;
+<style>
+.user-avatar {
+  float: left;
+}
+.user-message {
+  float: right;
+  margin: 5px;
+}
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+}
+.header-title p {
+  font-size: 25px;
+}
+.header-userinfo {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(0, -50%);
+}
+.el-header {
+  background-color: cadetblue;
+  padding: 0;
+  position: relative;
+}
+.header-logo {
+  margin-left: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: #fff;
+}
+.header-logo i {
+  font-size: 30px;
+}
+.el-main {
+  background: #cccccc26;
+}
+.el-menu-vertical-menu:not(.el-menu--collapse) {
+  width: 189px;
+  min-height: 400px;
 }
 </style>

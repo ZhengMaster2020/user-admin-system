@@ -1,12 +1,12 @@
 <template>
   <div>
-    delete user
+    <router-view ></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'DeleteUser'
+  name: 'Admin'
 }
 </script>
 
