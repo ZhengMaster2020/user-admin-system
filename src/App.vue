@@ -5,6 +5,23 @@
         <div class="header-logo">
           <i class="el-icon-menu" @click="isCollapse"></i>
         </div>
+        <div class="header-title">
+          <p>用户信息管理系统</p>
+        </div>
+        <div class="header-userinfo">
+          <div class="user-avatar">
+            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          </div>
+          <div class="user-message">
+            <el-dropdown split-button size="medium">
+              欢迎您，admin
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item icon="el-icon-message">个人信息</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-close">退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+        </div>
       </el-header>
       <el-row>
         <el-col :span="asieSpan">
@@ -57,6 +74,10 @@
         </el-col>
         <el-col :span="mainSpan" class="main">
           <el-main>
+            <el-breadcrumb separator-class="el-icon-arrow-right" style="margin:15px 20px 10px 15px;">
+              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{ path: '/add' }">添加用户</el-breadcrumb-item>
+            </el-breadcrumb>
             <router-view></router-view>
           </el-main>
         </el-col>
@@ -92,6 +113,29 @@ export default {
 </script>
 
 <style>
+.user-avatar {
+  float: left;
+}
+.user-message {
+  float: right;
+  margin: 5px;
+}
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+}
+.header-title p {
+  font-size: 25px;
+}
+.header-userinfo {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(0, -50%);
+}
 .el-header {
   background-color: cadetblue;
   padding: 0;
