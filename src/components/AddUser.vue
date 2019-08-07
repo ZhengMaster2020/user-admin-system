@@ -4,19 +4,19 @@
 
     <el-form :model="ruleForm" ref="ruleForm" status-icon :rules="rules">
       <el-form-item label="姓名" prop="name" required>
-        <el-input v-model="ruleForm.name" placeholder="username"></el-input>
+        <el-input v-model="ruleForm.name" placeholder="2-5个字符，必填"></el-input>
       </el-form-item>
       <el-form-item label="籍贯" prop="birthplace" required>
-        <el-input v-model="ruleForm.birthplace" placeholder="birthplace"></el-input>
+        <el-input v-model="ruleForm.birthplace" placeholder="2-10个字符，必填"></el-input>
       </el-form-item>
       <el-form-item label="学历" prop="education" required>
-        <el-input v-model="ruleForm.education" placeholder="education"></el-input>
+        <el-input v-model="ruleForm.education" placeholder="2-5个字符，必填"></el-input>
       </el-form-item>
       <el-form-item label="职位" prop="position">
-        <el-input v-model="ruleForm.position" placeholder="position"></el-input>
+        <el-input v-model="ruleForm.position" placeholder="2-10个字符"></el-input>
       </el-form-item>
       <el-form-item label="号码" prop="number" required>
-        <el-input v-model.number="ruleForm.number" placeholder="number"></el-input>
+        <el-input v-model.number="ruleForm.number" placeholder="请输入11位数手机号码"></el-input>
       </el-form-item>
       <el-form-item label="注册日期" prop="date">
         <el-col :span="8">
@@ -64,11 +64,11 @@ export default {
           { min: 2, max: 10, message: "长度在 2 到 10 个字符", trigger: "blur" }
         ],
         education: [
-          { require: true, message: "输入您的籍贯", trigger: "blur" },
+          { require: true, message: "输入您的学历", trigger: "blur" },
           { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" }
         ],
         position: [
-          { require: true, message: "输入您的籍贯", trigger: "blur" },
+          { require: true, message: "输入您的职位", trigger: "blur" },
           { min: 2, max: 10, message: "长度在 2 到 10 个字符", trigger: "blur" }
         ],
         number: [
@@ -87,17 +87,28 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit");
+          this.addUser()
         } else {
-          alert("error submit");
+          alert("填写的表单不合法");
           return false;
         }
-      });
+      })
     },
+    addUser () {
+      const url = 'https://www.easy-mock.com/mock/5d4a4e5f1fb9a2243333ea01/user-admin/add'
+      this.$axios.post(url, {
+        uid: '001',
+        name: 'zhangsan',
+      }).then((response) => {
+        this.$message(`添加用户成功  status=${response.status}`)
+      }).catch((error) => {
+        this.$message(`添加用户失败` + error)
+      })
+    }, 
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
-  }
+  },
 };
 </script>
 

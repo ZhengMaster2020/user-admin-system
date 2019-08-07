@@ -36,101 +36,26 @@ export default {
   name: 'AllUsers',
   data() {
     return {
-      tableData: [
-        {
-          date: new Date().toLocaleDateString(),
-          name: "张三",
-          birthplace: "广东广州",
-          number: "18998555668",
-          education: "本科",
-          position: "前端工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "张四",
-          birthplace: "广东深圳",
-          number: "189985556789",
-          education: "专科",
-          position: "后端工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "李四",
-          birthplace: "广东茂名",
-          number: "13498555668",
-          education: "研究生",
-          position: "Java工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "王五",
-          birthplace: "广东珠海",
-          number: "18999555668",
-          education: "本博士科",
-          position: "H5工程师"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "苟六",
-          birthplace: "广东东莞",
-          number: "13415645796",
-          education: "博士后",
-          position: "人工智能"
-        },
-        {
-          date: new Date().toLocaleDateString(),
-          name: "张良",
-          birthplace: "四川成都",
-          number: "13415645886",
-          education: "讲师",
-          position: "AI人脸识别"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "李四",
-          birthplace: "广东茂名",
-          number: "13498555668",
-          education: "研究生",
-          position: "Java工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "黄菁菁",
-          birthplace: "广东清远",
-          number: "13498555668",
-          education: "本科",
-          position: "UI工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "华名建",
-          birthplace: "云南丽江",
-          number: "13498555668",
-          education: "研究生",
-          position: "Java工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "林莹静",
-          birthplace: "湖北武汉",
-          number: "78945621235",
-          education: "研究生",
-          position: "Java工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "程斌",
-          birthplace: "北京朝阳",
-          number: "13498555668",
-          education: "研究生",
-          position: "PHP工程师"
-        },{
-          date: new Date().toLocaleDateString(),
-          name: "刘玲",
-          birthplace: "湖南长沙",
-          number: "13498555668",
-          education: "高中生",
-          position: "设计工程师"
-        },
-      ]
-    };
+      tableData: []
+    }
+  },
+  methods: {
+    getAllUsers () {
+      const url = 'https://www.easy-mock.com/mock/5d4a4e5f1fb9a2243333ea01/user-admin/all'
+      this.$axios.get(url)
+          .then((response) => {
+            let date = response.data
+            this.tableData = date.users
+          })
+          .catch(() => {
+            alert('数据请求失败,请稍后再试')
+          })
+    }
+  },
+  created () {
+    this.getAllUsers()
   }
-};
+}
 </script>
 
 <style scoped>
