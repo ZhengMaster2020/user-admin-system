@@ -11,6 +11,8 @@ import Login from './components/Login'
 import Admin from './components/Admin'
 import AdminMsg from './components/AdminMsg'
 import AdminSetting from './components/AdminSetting'
+import UserDetail from './components/UserDetail'
+import NotFound from './components/NotFound'
 
 Vue.use(VueRouter)
 
@@ -39,18 +41,29 @@ const routes = [{
         component: Admin,
         children: [{
           path: '/admin/msg',
+          name: 'AdminMsg',
           component: AdminMsg
-        }, {
+        },
+        {
           path: '/admin/set',
           component: AdminSetting
         }]
-      }
+      },
+      {
+        path: '/udetail/:id',
+        name: 'userDetail',
+        component: UserDetail,
+      },
     ]
   },
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+  }, 
+  {
+    path: '*',
+    component: NotFound,
   }
 ]
 

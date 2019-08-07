@@ -16,7 +16,7 @@
       <el-table-column prop="position" label="职位"></el-table-column>
       <el-table-column label="操作">
         <el-button-group>
-          <el-button type="primary" size="small" :circle="true">详情</el-button>
+          <el-button type="primary" size="small" :circle="true" @click="userDetail">详情</el-button>
           <el-button type="danger" size="mini" :circle="true">删除</el-button>
         </el-button-group>
       </el-table-column>
@@ -50,6 +50,9 @@ export default {
           .catch(() => {
             alert('数据请求失败,请稍后再试')
           })
+    },
+    userDetail () {
+      this.$router.push('/udetail')
     }
   },
   created () {

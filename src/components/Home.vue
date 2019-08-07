@@ -13,11 +13,11 @@
             <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
           </div>
           <div class="user-message">
-            <el-dropdown split-button size="medium" @command="handleCommand" >
+            <el-dropdown split-button size="medium" @command="handleCommand">
               欢迎您，admin
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item icon="el-icon-message" command="info">个人信息</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-circle-close"  command="exit" divided>退出</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-close" command="exit" divided>退出</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -111,9 +111,16 @@ export default {
         this.mainSpan = 21;
       }
     },
-    handleCommand (command) {
-      if ( command === 'exit' ) {
-        this.$router.push('login')
+    handleCommand(command) {
+      switch (command) {
+        case "exit":
+          this.$router.push("/login");
+          break;
+        case "info":
+          this.$router.push("/admin/msg");
+          break;
+        default:
+          return
       }
     }
   }

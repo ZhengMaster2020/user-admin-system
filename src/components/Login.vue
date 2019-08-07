@@ -9,10 +9,9 @@
       <el-form-item label="密码：" prop="password">
         <el-input type="password" v-model="loginForm.password" placeholder="password" autocomplete="off"></el-input>
       </el-form-item>
-      <el-button type="primary" @click="submitLoginForm('loginForm')" style="width:320px" >登录</el-button>
+      <el-button type="primary"  @click="submitLoginForm('loginForm')" style="width:320px" >登录</el-button>
     </el-form>
     </div>
-   
   </div>
 </template>
 
@@ -42,7 +41,6 @@ export default {
       this.$refs[formName].validate( (valid) => {
         if (valid) {
           this.$router.push('/')
-          // console.log(formName)
         } else {
           alert('登录失败')
           return false
