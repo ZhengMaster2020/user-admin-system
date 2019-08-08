@@ -29,6 +29,12 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-row style="margin: 20px 0;">
+      <el-col :span="6" :offset="10">
+        <el-button type="primary" :loading="true" v-if="loadingFlag">数据加载中</el-button>
+      </el-col>
+    </el-row>
+    
     <el-pagination
       background
       layout="total, prev, pager, next, jumper"
@@ -44,19 +50,20 @@ export default {
   name: "AllUsers",
   data() {
     return {
-      allUsers: []
+      allUsers: [],
+      loadingFlag: true,
     };
   },
   methods: {
     // 获取远程数据
     getAllUsers() {
-      const url =
-        "https://www.easy-mock.com/mock/5d4a4e5f1fb9a2243333ea01/user-admin/all";
+      const url = "https://www.easy-mock.com/mock/5d4a4e5f1fb9a2243333ea01/user-admin/all";
       this.$axios
         .get(url)
         .then(response => {
           let date = response.data;
           this.allUsers = date.users;
+          this.loadingFlag = false
         })
         .catch(() => {
           alert("数据请求失败,请稍后再试");
@@ -64,7 +71,6 @@ export default {
     },
     // 跳转至指定用户信息的详情页面
     userDetail(scope) {
-      console.log(scope)
       this.$router.push({
         name: 'user',
         params: {

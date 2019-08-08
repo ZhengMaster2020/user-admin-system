@@ -7,7 +7,7 @@
           <el-col :span="10">
             <el-collapse-item>
               <template slot="title">
-                <i class="el-icon-s-custom"></i>
+                <i class=" icons el-icon-s-custom"></i>
                 用户名
               </template>
               <div>{{this.user.name}}</div>
@@ -16,7 +16,7 @@
           <el-col :span="10" :offset="4">
             <el-collapse-item>
               <template slot="title">
-                <i class="el-icon-location"></i>
+                <i class=" icons el-icon-location"></i>
                 籍贯
               </template>
               <div>{{this.user.birthplace}}</div>
@@ -27,7 +27,7 @@
           <el-col :span="10">
             <el-collapse-item>
               <template slot="title">
-                <i class="el-icon-info"></i>
+                <i class=" icons el-icon-info"></i>
                 职位
               </template>
               <div>{{this.user.position}}</div>
@@ -36,7 +36,7 @@
           <el-col :span="10" :offset="4">
             <el-collapse-item>
               <template slot="title">
-                <i class="el-icon-s-order"></i>
+                <i class=" icons el-icon-s-order"></i>
                 学历
               </template>
               <div>{{this.user.education}}</div>
@@ -47,7 +47,7 @@
           <el-col :span="10">
             <el-collapse-item>
               <template slot="title">
-                <i class="el-icon-mobile-phone"></i>
+                <i class=" icons el-icon-mobile-phone"></i>
                 手机号码
               </template>
               <div>{{this.user.number}}</div>
@@ -56,7 +56,7 @@
           <el-col :span="10" :offset="4">
             <el-collapse-item>
               <template slot="title">
-                <i class="el-icon-time"></i>
+                <i class=" icons el-icon-time"></i>
                 注册时间
               </template>
               <div>{{this.user.date}}</div>
@@ -142,7 +142,7 @@ export default {
 .el-tag {
   margin: 10px;
 }
-i {
+.icons {
   margin-right: 10px;
 }
 </style>

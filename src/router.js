@@ -22,6 +22,7 @@ const routes = [{
     component: Home,
     children: [{
         path: '/all',
+        name: 'all',
         component: AllUsers,
       },
       {
