@@ -66,7 +66,7 @@
       </el-collapse>
       <!-- 操作按钮组 -->
       <el-row>
-        <el-button class="edit-btn" type="primary" circle  icon="el-icon-edit"></el-button>
+        <el-button class="edit-btn" type="primary" circle  icon="el-icon-edit" @click="updateUserMsg"></el-button>
         <el-button class="delete-btn" type="danger" circle  icon="el-icon-delete"></el-button>
       </el-row>
     </el-card>
@@ -92,6 +92,7 @@ export default {
   },
   methods: {
     getQueryParams () {
+      console.log(this.$route)
       let rowParams = this.$route.query.row
       this.user.date = rowParams.date
       this.user.name = rowParams.name
@@ -99,6 +100,17 @@ export default {
       this.user.education = rowParams.education
       this.user.position = rowParams.position
       this.user.number = rowParams.number
+    },
+    updateUserMsg () {
+      this.$router.push({
+        name: 'update',
+        params: {
+          uid: this.$route.params.uid
+        },
+        query: {
+          usermsg: this.$route.query.row
+        }
+      })
     }
   },
   created () {

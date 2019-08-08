@@ -31,7 +31,15 @@ const routes = [{
       },
       {
         path: '/update',
-        component: UpdateUser
+        component: UpdateUser,
+        children:[
+          { 
+            path: '/update/:uid',
+            name: 'update',
+            component: UpdateUser,
+
+           }
+        ]
       },
       {
         path: '/search',

@@ -2,39 +2,39 @@
   <div class="add-user">
     <el-tag type="info" effect="plain">更新用户信息</el-tag>
 
-    <el-form :model="ruleForm" ref="ruleForm" status-icon :rules="rules">
+    <el-form :model="user" ref="user" status-icon :rules="rules">
       <el-form-item label="姓名" prop="name" required>
-        <el-input v-model="ruleForm.name" placeholder="username"></el-input>
+        <el-input v-model="user.name" placeholder="username"></el-input>
       </el-form-item>
       <el-form-item label="籍贯" prop="birthplace" required>
-        <el-input v-model="ruleForm.birthplace" placeholder="birthplace"></el-input>
+        <el-input v-model="user.birthplace" placeholder="birthplace"></el-input>
       </el-form-item>
       <el-form-item label="学历" prop="education" required>
-        <el-input v-model="ruleForm.education" placeholder="education"></el-input>
+        <el-input v-model="user.education" placeholder="education"></el-input>
       </el-form-item>
       <el-form-item label="职位" prop="position">
-        <el-input v-model="ruleForm.position" placeholder="position"></el-input>
+        <el-input v-model="user.position" placeholder="position"></el-input>
       </el-form-item>
       <el-form-item label="号码" prop="number" required>
-        <el-input v-model.number="ruleForm.number" placeholder="number"></el-input>
+        <el-input v-model.number="user.number" placeholder="number"></el-input>
       </el-form-item>
-      <el-form-item label="注册日期" prop="date">
+      <el-form-item label="注册日期">
         <el-col :span="8">
-          <el-form-item prop="date-day">
-            <el-date-picker v-model="ruleForm.dateDay" placeholder="选择日期"></el-date-picker>
+          <el-form-item prop="dateDay" required >
+            <el-date-picker v-model="user.dateDay" placeholder="选择日期"></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col class="line" :span="4">—</el-col>
         <el-col :span="8">
-          <el-form-item prop="dateTime">
-            <el-time-picker v-model="ruleForm.dateTime" placeholder="选择时间"></el-time-picker>
+          <el-form-item prop="dateTime" required >
+            <el-time-picker v-model="user.dateTime" placeholder="选择时间"></el-time-picker>
           </el-form-item>
         </el-col>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button type="primary" @click="submitForm('user')">提交</el-button>
+        <el-button @click="resetForm('user')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -45,14 +45,15 @@ export default {
   name: "UpdateUser",
   data() {
     return {
-      ruleForm: {
-        name: 'zhangsan',
-        dateDay: 'zhangsan',
-        dateTime: 'zhangsan',
-        birthplace: 'zhangsan',
-        position: 'zhangsan',
-        education: 'zhangsan',
-        number: 'zhangsan'
+      user: {
+        name: '',
+        date: '',
+        dateDay: '',
+        dateTime: '',
+        birthplace: '',
+        position: '',
+        education: '',
+        number: ''
       },
       rules: {
         name: [
@@ -84,10 +85,25 @@ export default {
     };
   },
   methods: {
+    fetchUser () {
+      let userMsg = this.$route.query.usermsg       
+      if (userMsg === undefined) {
+        return 
+      }
+      let dateDay = userMsg.date.split(' ')[0]
+      let dateTime = userMsg.date.split(' ')[1]
+      this.user.name = userMsg.name
+      this.user.dateDay = dateDay
+      this.user.dateTime = dateTime
+      this.user.birthplace = userMsg.birthplace
+      this.user.position = userMsg.position
+      this.user.education = userMsg.education
+      this.user.number = userMsg.number
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit");
+          alert("表单填写正确");
         } else {
           alert("error submit");
           return false;
@@ -97,6 +113,9 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  created () {
+    this.fetchUser()
   }
 };
 </script>
