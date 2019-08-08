@@ -1,5 +1,5 @@
 <template>
-  <div class="add-user">
+  <div class="add-user">`
     <el-tag type="info" effect="plain">更新用户信息</el-tag>
 
     <el-form :model="user" ref="user" status-icon :rules="rules">

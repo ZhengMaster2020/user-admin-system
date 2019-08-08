@@ -74,6 +74,7 @@
         </el-col>
         <el-col :span="mainSpan" class="main">
           <el-main>
+            <!-- 面包屑导航条 -->
             <el-breadcrumb
               separator-class="el-icon-arrow-right"
               style="margin:15px 20px 10px 15px;"
@@ -81,6 +82,7 @@
               <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
               <el-breadcrumb-item :to="{ path: '/all' }">ALL用户</el-breadcrumb-item>
             </el-breadcrumb>
+            <!-- 路由视图渲染内容 -->
             <router-view></router-view>
           </el-main>
         </el-col>
