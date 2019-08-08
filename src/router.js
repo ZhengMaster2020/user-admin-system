@@ -50,8 +50,8 @@ const routes = [{
         }]
       },
       {
-        path: '/udetail/:id',
-        name: 'userDetail',
+        path: '/user/:uid',
+        name: 'user',
         component: UserDetail,
       },
     ]
