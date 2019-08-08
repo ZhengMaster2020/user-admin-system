@@ -4,10 +4,10 @@
        <p class="login-title">用户信息管理系统</p>
     <el-form :model="loginForm" ref="loginForm" status-icon :rules="rules">
       <el-form-item label="用户名：" prop="username">
-        <el-input v-model="loginForm.username" placeholder="username" autocomplete="off"></el-input>
+        <el-input v-model="loginForm.username" placeholder="2-6个字符" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="密码：" prop="password">
-        <el-input type="password" v-model="loginForm.password" placeholder="password" autocomplete="off"></el-input>
+        <el-input type="password" v-model="loginForm.password" placeholder="6-12个字符" autocomplete="off"></el-input>
       </el-form-item>
       <el-button type="primary"  @click="submitLoginForm('loginForm')" style="width:320px" >登录</el-button>
     </el-form>
