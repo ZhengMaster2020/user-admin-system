@@ -40,7 +40,7 @@
 7. - [x] 更新用户相关信息 
 8. - [x] 使用vue-router进行路由跳转以及实现SPA功能等相关功能 
 9. - [x] 使用vuex进行组件数据状态的管理 
-10. 后端Node.js 对数据逻辑的处理 以及 MongDB数据库的相关操作的实现 <span style="color:red">X</span>
+10. 后端Node.js 对数据逻辑的处理 以及 MongDB数据库的相关操作的实现 
    
 ## 项目截图
 ### 登录
