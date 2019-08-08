@@ -1,5 +1,4 @@
 # users-admin-system 用户管理系统 
------
 <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
   </a>
@@ -15,7 +14,8 @@
 <a href="https://github.com/ZhengMaster2020/user-admin-system/releases">
   <img src="https://img.shields.io/github/release/ZhengMaster2020/user-admin-system" alt="github release">
 </a>
-<p style="margin-top:20px;">
+
+<p >
   基于Vue 2.x + Element UI 完成的用户管理系统,管理用户的相关信息,可以进行用户相关信息的增删该查(CRUD)操作,对于刚入门Vue的小伙伴来说是一个比较系统比较好的加深知识理解与实践的项目.
 </p>
 
@@ -31,21 +31,21 @@
 
 
 ## 实现功能
-0. 使用Element UI构建布局以及像页面以及组件的编写
-1. 登录功能 
-2. 使用RESTFul API获取easy-mock模拟数据等
-3. 查看特定用户详情信息
-4. 新增用户信息
-5. 删除指定用户信息
-6. 更新用户相关信息
-7. 使用vue-router进行路由跳转以及实现SPA功能等相关功能
-8. 使用vuex进行组件数据状态的管理
+1.  - [x] 使用Element UI构建布局以及像页面以及组件的编写
+2. 登录功能 
+3. 使用RESTFul API获取easy-mock模拟数据等
+4. 查看特定用户详情信息
+5. 新增用户信息
+6. 删除指定用户信息
+7. 更新用户相关信息
+8. 使用vue-router进行路由跳转以及实现SPA功能等相关功能
+9. 使用vuex进行组件数据状态的管理
    
 ## 项目截图
 ### 登录
-![loginImages]()
+![loginImages](https://github.com/ZhengMaster2020/user-admin-system/blob/master/screenshots/user-admn-login.png)
 ### 所有用户信息界面
-![allUsersImages]()
+![allUsersImages](https://github.com/ZhengMaster2020/user-admin-system/blob/master/screenshots/user-admin-usermsg.png)
 ## 项目步骤
 ```
 npm install
