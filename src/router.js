@@ -20,6 +20,7 @@ const routes = [{
     path: '/',
     alias: 'home',
     component: Home,
+    redirect: '/all',
     children: [{
         path: '/all',
         name: 'all',
